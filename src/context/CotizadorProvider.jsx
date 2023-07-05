@@ -23,12 +23,17 @@ const CotizadorProvider = ({children}) => {
         })
     }
 
+    //ERROR DE LA VALIDACION 
+    const [error, setError] = useState('')
+
     return (
         <CotizadorContext.Provider 
             value={{
                 // AQUI COLOCAS TODOS A LO QUE PUEDEN ACCEDER LOS OTROS COMPONENTES DE LA APP 
                 datos,
-                handleChangeDatos
+                handleChangeDatos,
+                error,
+                setError
             }}
         >
             {children}

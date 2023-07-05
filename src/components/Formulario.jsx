@@ -3,14 +3,33 @@ import { Fragment } from "react";
 import { MARCAS, YEARS, PLANES } from "../constants";
 
 import useCotizador from '../hooks/useCotizador'
+import Error from './Error'
+
 export default function Formulario() {
 
-  const { handleChangeDatos, datos } = useCotizador()
+  const { handleChangeDatos, datos, error, setError } = useCotizador()
+
+  // CREAMOS UNA FUNCION DE FORMA LOCAL EL CUAL ESTARA DISPONIBLE SOLO EN ESTE COMPONENTE 
+  const handleSubmit = e => {
+    e.preventDefault()
+
+    if(Object.values(datos).includes('')) {
+        setError('Todos los campos son obligatorios')
+        // PARA QUE NO SIIGA EJECUTADOSE EL CODIGO
+        return
+    }
+
+    setError('')
+    cotizarSeguro()
+  }
   return (
     <>
-      {/* {error && <Error />} */}
-      {/* onSubmit={handleSubmit} */}
-      <form >
+      {error && <Error />}
+      
+      
+      <form 
+        onSubmit={handleSubmit}
+      >
         <div className="my-5">
           <label className="block mb-3 font-bold text-gray-400 uppercase">
             Marca
