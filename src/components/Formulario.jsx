@@ -7,7 +7,7 @@ import Error from './Error'
 
 export default function Formulario() {
 
-  const { handleChangeDatos, datos, error, setError } = useCotizador()
+  const { handleChangeDatos, datos, error, setError, cotizarSeguro } = useCotizador()
 
   // CREAMOS UNA FUNCION DE FORMA LOCAL EL CUAL ESTARA DISPONIBLE SOLO EN ESTE COMPONENTE 
   const handleSubmit = e => {
