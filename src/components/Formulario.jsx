@@ -1,7 +1,11 @@
 import React from "react";
 import { Fragment } from "react";
 import { MARCAS, YEARS, PLANES } from "../constants";
+
+import useCotizador from '../hooks/useCotizador'
 export default function Formulario() {
+
+  const { handleChangeDatos, datos } = useCotizador()
   return (
     <>
       {/* {error && <Error />} */}
@@ -14,8 +18,8 @@ export default function Formulario() {
           <select
             name="marca"
             className="w-full p-3 bg-white border border-gray-200"
-            // onChange={(e) => handleChangeDatos(e)}
-            // value={datos.marca}
+            onChange={(e) => handleChangeDatos(e)}
+            value={datos.marca}
           >
             <option value="">-- Selecciona Marca --</option>
 
@@ -34,8 +38,8 @@ export default function Formulario() {
           <select
             name="year"
             className="w-full p-3 bg-white border border-gray-200"
-            // onChange={(e) => handleChangeDatos(e)}
-            // value={datos.year}
+            onChange={(e) => handleChangeDatos(e)}
+            value={datos.year}
           >
             <option value="">-- Selecciona Año --</option>
 
@@ -58,8 +62,8 @@ export default function Formulario() {
                 <input
                   type="radio"
                   name="plan"
-                //   value={plan.id}
-                //   onChange={(e) => handleChangeDatos(e)}
+                  value={plan.id}
+                  onChange={(e) => handleChangeDatos(e)}
                 />
               </Fragment>
             ))}
