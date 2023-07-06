@@ -4,7 +4,7 @@ const CotizadorContext = createContext()
 import { obtenerDiferenciaYear, calcularMarca, calcularPlan, formatearDinero } from '../helpers'
 
 const CotizadorProvider = ({children}) => {
-    //AQUIPUEDES DEFINIR STATE, FUNCIONES PROPIAS 
+    //AQUI PUEDES DEFINIR STATE, FUNCIONES PROPIAS 
 
     // EL FORMULARIO ACTUALIZARA ESTAS 3 VARIABLES
     const [datos, setDatos] = useState({
@@ -27,6 +27,9 @@ const CotizadorProvider = ({children}) => {
 
     //ERROR DE LA VALIDACION 
     const [error, setError] = useState('')
+
+    // STATE CARGANDO
+    const [cargando, setCargando] = useState(false)
 
     //resultado
     const [resultado, setResultado] = useState(0)
@@ -56,10 +59,12 @@ const CotizadorProvider = ({children}) => {
         setCargando(true)
 
         setTimeout(() => {
+            // DESPUES DE 3 SEGUNDO SE COLOCA EN EL STATE Y PASA A SER FALSE
             setResultado(resultado)
             setCargando(false)
-        }, 3000);
+        }, 1000);
     }
+    
     
     return (
         <CotizadorContext.Provider 
@@ -69,7 +74,9 @@ const CotizadorProvider = ({children}) => {
                 handleChangeDatos,
                 error,
                 setError,
-                cotizarSeguro
+                cotizarSeguro,
+                resultado,
+                cargando
             }}
         >
             {children}
