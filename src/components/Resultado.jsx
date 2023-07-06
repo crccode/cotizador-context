@@ -8,9 +8,18 @@ const Resultado = () => {
     // EXTRAEMOS LOS DATOS QUE VA A INTRODUIR EL USUARIO
     const { marca, plan, year } = datos
 
-    const [nombreMarca] = MARCAS.filter(m => m.id === Number(marca) )
+    // No podemos usar callback por que no realiza ningun calculo
+    // useRef congela el valor 
+    const yearRef = useRef(year)
 
-    const [nombrePlan] = PLANES.filter(p => p.id === Number(plan) )
+    const [nombreMarca] = useCallback( 
+        MARCAS.filter(m => m.id === Number(marca) ), 
+        [ resultado]
+    )
+    const [nombrePlan] = useCallback( 
+        PLANES.filter(p => p.id === Number(plan) ), 
+        [resultado]
+    )
      
     if(resultado === 0) return null
 
@@ -33,7 +42,7 @@ const Resultado = () => {
             <Fragment>
             <p className="my-2">
                 <span className="font-bold">Año del Auto: </span>
-                {year}
+                {yearRef.current}
             </p>
             </Fragment>
 
